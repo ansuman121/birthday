@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Sonali ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#ff4fa3,#ff89c6,#ffd6ea,#c8a2ff);
+overflow-x:hidden;
+color:white;
+}
+
+section{
+min-height:100svh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:50px 20px;
+text-align:center;
+position:relative;
+}
+
+h1{
+    font-family:'Dancing Script',cursive;
+    font-size:clamp(3rem,8vw,6rem);
+}
+
+h2{
+font-size:3rem;
+margin-bottom:20px;
+}
+
+.glass{
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.2);
+border-radius:25px;
+padding:30px;
+box-shadow:0 8px 30px rgba(0,0,0,.15);
+}
+
+.hero p{
+font-size:1.3rem;
+margin-top:20px;
+}
+
+.btn{
+padding:15px 35px;
+border:none;
+border-radius:50px;
+background:white;
+color:#ff4fa3;
+font-weight:700;
+cursor:pointer;
+margin-top:25px;
+transition:.3s;
+}
+
+.btn:hover{
+transform:scale(1.08);
+}
+
+.music-btn{
+position:fixed;
+top:20px;
+right:20px;
+z-index:999;
+}
+
+.photo-frame{
+width:320px;
+height:320px;
+border-radius:50%;
+padding:8px;
+background:conic-gradient(
+#fff,
+#ff4fa3,
+#fff,
+#c8a2ff,
+#fff
+);
+animation:rotate 5s linear infinite;
+}
+
+.photo-frame img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:50%;
+border:5px solid white;
+}
+
+@keyframes rotate{
+100%{
+transform:rotate(360deg);
+}
+}
+
+.envelope{
+cursor:pointer;
+font-size:6rem;
+transition:.4s;
+}
+
+.envelope:hover{
+transform:scale(1.1);
+}
+
+.letter{
+display:none;
+max-width:700px;
+line-height:2;
+font-size:1.1rem;
+margin-top:20px;
+}
+
+.cards{
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+justify-content:center;
+max-width:1200px;
+}
+
+.card{
+width:min(90vw,260px);
+padding:25px;
+border-radius:25px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+transition:.4s;
+}
+
+.letter{
+    width:min(90%,700px);
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.05);
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.cake{
+font-size:10rem;
+cursor:pointer;
+}
+
+#wishText{
+margin-top:20px;
+font-size:2rem;
+font-weight:bold;
+}
+
+.final-btn{
+font-size:1.2rem;
+}
+
+.final-message{
+display:none;
+max-width:800px;
+margin-top:30px;
+font-size:1.3rem;
+line-height:2;
+}
+
+.heart{
+position:fixed;
+bottom:-50px;
+animation:float 8s linear infinite;
+font-size:25px;
+pointer-events:none;
+}
+
+@keyframes float{
+0%{
+transform:translateY(0);
+opacity:1;
+}
+100%{
+transform:translateY(-110vh);
+opacity:0;
+}
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
+z-index:100;
+}
+
+@media(max-width:768px){
+
+    h2{
+        font-size:2rem;
+    }
+
+    p{
+        font-size:0.95rem;
+    }
+
+    .cards{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .cake{
+        font-size:6rem;
+    }
+
+    .final-message{
+        font-size:1rem;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<audio id="music" loop>
+<source src="birthday-music.mp3" type="audio/mpeg">
+</audio>
+
+<canvas id="fireworks"></canvas>
+
+
+<section class="hero">
+
+<div class="glass">
+
+<h1>Happy Birthday</h1>
+
+<h2>Sonali 😄</h2>
+
+<p>
+22 Years Of Sunshine ✨
+</p>
+
+
+<button class="btn" onclick="startSurprise()">
+Open Your Surprise 🎁
+</button>
+
+</div>
+
+</section>
+
+<section id="photo">
+
+<h2>Beautiful Sonali 🌸</h2>
+
+<div class="photo-frame">
+<img src="sonali.jpeg" alt="Sonali">
+</div>
+
+</section>
+
+<section>
+
+<h2>A Letter For You 💌</h2>
+
+<div class="envelope" onclick="openLetter()">
+💌
+</div>
+
+<div class="letter glass" id="letter">
+
+<p id="typedText"></p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Your Personality ✨</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>🗣 Talkative Queen</h3>
+<p>
+Can turn a 5 minute conversation into a memorable event.
+</p>
+</div>
+
+<div class="card">
+<h3>🌸 Innocent Soul</h3>
+<p>
+Pure heart. Pure intentions. Pure vibes.
+</p>
+</div>
+
+<div class="card">
+<h3>❤️ Kind Heart</h3>
+<p>
+Always caring, always helping.
+</p>
+</div>
+
+<div class="card">
+<h3>😠 Angry But Cute</h3>
+<p>
+Gets angry for 5 minutes and then becomes adorable again.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Make A Birthday Wish 🎂</h2>
+
+<div class="cake" onclick="blowCandle()">
+🕯️🎂
+</div>
+
+<div id="wishText"></div>
+
+</section>
+
+<section>
+
+<h2>Final Surprise 🎁</h2>
+
+<button class="btn final-btn" onclick="finalGift()">
+Open Final Gift
+</button>
+
+<div class="final-message glass" id="finalMessage">
+
+Happy Birthday Sonali ❤️<br><br>
+
+May your smile stay bright,<br>
+your heart stay kind,<br>
+and your dreams become reality.<br><br>
+
+Keep talking.<br>
+Keep laughing.<br>
+Keep shining.<br><br>
+
+You are appreciated.<br>
+You are special.<br>
+You are loved.<br><br>
+
+🎂 Happy 22nd Birthday 🎂
+
+</div>
+
+</section>
+
+<script>
+
+const text =
+`Dear Sonali,
+
+Happy 22nd Birthday 🎂
+
+To the girl who can talk endlessly,
+spread kindness effortlessly,
+and somehow look cute even when angry...
+
+May this year bring countless smiles,
+beautiful memories,
+and all the happiness you deserve.
+
+Keep smiling.
+Keep shining.
+
+❤️`;
+
+function openLetter(){
+
+document.getElementById("letter").style.display="block";
+
+let i=0;
+let target=document.getElementById("typedText");
+target.innerHTML="";
+
+let interval=setInterval(()=>{
+
+target.innerHTML += text.charAt(i);
+
+i++;
+
+if(i>=text.length){
+clearInterval(interval);
+}
+
+},40);
+
+}
+
+function blowCandle(){
+
+document.querySelector(".cake").innerHTML="🎂";
+
+document.getElementById("wishText").innerHTML=
+"✨ Make A Wish ✨";
+
+setTimeout(()=>{
+
+document.getElementById("wishText").innerHTML=
+"🎉 WISH GRANTED 🎉";
+
+launchFireworks();
+
+},2000);
+
+}
+
+function finalGift(){
+
+document.getElementById("finalMessage").style.display="block";
+
+launchFireworks();
+
+for(let i=0;i<50;i++){
+createHeart();
+}
+
+}
+
+function toggleMusic(){
+
+let music=document.getElementById("music");
+
+if(music.paused){
+music.play();
+}
+else{
+music.pause();
+}
+
+}
+
+function createHeart(){
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="💖";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=
+(Math.random()*20+20)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},8000);
+
+}
+
+setInterval(createHeart,700);
+
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+function launchFireworks(){
+
+for(let i=0;i<120;i++){
+
+particles.push({
+
+x:canvas.width/2,
+y:canvas.height/2,
+vx:(Math.random()-0.5)*10,
+vy:(Math.random()-0.5)*10,
+life:100
+
+});
+
+}
+
+}
+
+function animate(){
+
+requestAnimationFrame(animate);
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach((p,index)=>{
+
+p.x+=p.vx;
+p.y+=p.vy;
+p.life--;
+
+ctx.beginPath();
+ctx.arc(p.x,p.y,3,0,Math.PI*2);
+ctx.fillStyle=
+`hsl(${Math.random()*360},100%,70%)`;
+ctx.fill();
+
+if(p.life<=0){
+particles.splice(index,1);
+}
+
+});
+
+}
+
+animate();
+
+window.addEventListener("resize",()=>{
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+});
+
+function startSurprise(){
+
+    document.body.insertAdjacentHTML(
+
+'beforeend',
+
+`
+
+<div id="welcomeModal" style="
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(0,0,0,.7);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:9999;
+
+">
+
+<div style="
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+text-align:center;
+
+color:#ff4fa3;
+
+max-width:400px;
+
+">
+
+<h2>Happy Birthday Sonali </h2>
+
+<p>Your surprise journey begins now ✨</p>
+
+</div>
+
+</div>
+
+`
+
+);
+
+setTimeout(()=>{
+
+document.getElementById("welcomeModal").remove();
+
+},2500);
+
+    const music = document.getElementById("music");
+
+    music.volume = 0;
+
+    music.play();
+
+    let fade = setInterval(()=>{
+
+        if(music.volume < 0.95){
+            music.volume += 0.05;
+        }else{
+            clearInterval(fade);
+        }
+
+    },200);
+
+    document.getElementById("photo").scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
